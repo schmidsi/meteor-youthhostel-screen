@@ -1,0 +1,33 @@
+<template name='adminLayout'>
+  <header>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/"> Youthhostel Screen Control Room</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon">
+          <a href="#"><span>Menu</span></a>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
+          <li><a href="/screens">Screens</a></li>
+          <li class="divider"></li>
+          <li><a href="/images">Images</a></li>
+          <li class="divider"></li>
+          <li><a href="/users">Users</a></li>
+          <li class="divider"></li>
+        </ul>
+      </section>
+    </nav>
+  </header>
+
+  <main class="content">
+    <div class="row">
+      <div class="small-12 columns">
+        {{>Template.dynamic template=content}}
+      </div>
+    </div>
+  </main>
+</template>

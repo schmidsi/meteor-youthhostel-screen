@@ -1,0 +1,20 @@
+<template name='screenList'>
+  <table class='small-12'>
+    <thead><tr>
+      <th class="small-5">Name</th>
+      <th class="small-6">Location</th>
+      <th class="small-1">
+        <a class="button tiny round icon success fi-plus"
+          href="{{path 'screenDetail' id='add'}}"></a>
+      </th>
+    </tr></thead>
+    <tbody>
+      {{#each screens}}
+      <tr>
+        <td><a href="/admin/screens/{{ _id }}">{{ name }}</a></td>
+        <td colspan="2"><a href="/admin/screens/{{ _id }}">{{ location }}</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
