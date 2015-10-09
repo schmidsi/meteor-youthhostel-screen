@@ -1,27 +1,41 @@
-Schemas._Timeslots = new SimpleSchema({
-  morning: {
-    type: Boolean,
-    defaultValue: true
+// '_WeatherPaner', '_NewsPanel', '_EmbedlyPanel', '_IframePanel'
+
+Schemas._TextPanel = new SimpleSchema({
+  text: {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'textarea',
+        rows: 10
+      }
+    }
   },
-  noon: {
-    type: Boolean,
-    defaultValue: true
-  },
-  afternoon: {
-    type: Boolean,
-    defaultValue: true
-  },
-  evening: {
-    type: Boolean,
-    defaultValue: true
-  },
-  night: {
-    type: Boolean,
-    defaultValue: true
+  size: {
+    type: String,
+    allowedValues: ['l', 'm', 's'],
+    defaultValue: 'm'
   }
 })
 
-Schemas.PanelBase = new SimpleSchema([{
+
+Schemas._ImagePanel = new SimpleSchema({
+  url: {
+    type: String
+  },
+  type: {
+    type: String,
+    allowedValues: ['contain', 'cover'],
+    defaultValue: 'cover'
+  }
+})
+
+
+Schemas.Panel = new SimpleSchema([{
+  type: {
+    type: String,
+    allowedValues: ['Text', 'Image'],
+    defaultValue: 'Text'
+  },
   priority: {
     type: Number,
     allowedValues: [1, 2, 3],
@@ -32,30 +46,30 @@ Schemas.PanelBase = new SimpleSchema([{
     defaultValue: 60
   },
   timeslots: {
-    type: Schemas._Timeslots
+    type: [String],
+    autoform: {
+      type: 'select-checkbox-inline',
+      afFieldInput: {
+        noselect: true,
+        options: {
+          'morning':   'morning',
+          'noon':      'noon',
+          'afternoon': 'afternoon',
+          'evening':   'evening',
+          'night':     'night'
+        }
+      }
+    }
+  },
+  text: {
+    type: Schemas._TextPanel,
+    autoform: {
+      data: {
+        'asdfasdf': 1234
+      }
+    }
+  },
+  image: {
+    type: Schemas._ImagePanel
   }
 }, Schemas.Base])
-
-Schemas.TextPanel = new SimpleSchema([{
-  text: {
-    type: String
-  },
-  size: {
-    type: String,
-    min: 1,
-    max: 1,
-    allowedValues: ['l', 'm', 's'],
-    defaultValue: 'm'
-  }
-}, Schemas.PanelBase])
-
-Schemas.ImagePanel = new SimpleSchema([{
-  url: {
-    type: String
-  },
-  type: {
-    type: String,
-    allowedValues: ['contain', 'cover'],
-    defaultValue: 'cover'
-  }
-}, Schemas.PanelBase])

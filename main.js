@@ -3,6 +3,11 @@ if (Meteor.isClient) {
     return FlowRouter.path(name, kwargs.hash)
   })
 
+  Template.registerHelper('dump', (v) => {
+    console.log(v)
+    return ''
+  })
+
   Template.screenList.helpers({
     screens: function() {
       return Screens.find()

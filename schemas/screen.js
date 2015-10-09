@@ -18,6 +18,6 @@ Schemas.Screen = new SimpleSchema([{
     }
   },
   panels: {
-    type: [Schemas.TextPanel, Schemas.ImagePanel]
+    type: [ Schemas.Panel ]
   }
 }, Schemas.Base])

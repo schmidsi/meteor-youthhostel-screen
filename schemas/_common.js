@@ -5,21 +5,21 @@ Schemas.Base = new SimpleSchema({
     type: Date,
     defaultValue: new Date(),
     autoform: {
-      disabled: true
+      omit: true
     }
   },
   updatedAt: {
     type: Date,
     autoValue: () => { return new Date() },
     autoform: {
-      disabled: true
+      omit: true
     }
   },
   createdBy: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     autoform: {
-      disabled: true
+      omit: true
     },
     optional: true
   }
