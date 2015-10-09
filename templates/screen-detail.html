@@ -1,4 +1,61 @@
 <template name='screenDetail'>
-  <h1>Create new screen</h1>
-  {{> quickForm collection="Screens" id="insertScreenForm" doc=doc template="plain" }}
+  {{#if insert }}
+    <h1>Create new screen</h1>
+  {{else}}
+    <h1>Change screen</h1>
+  {{/if}}
+
+  {{#autoForm collection='Screens' id='upsertScreenForm' doc=doc type=mode }}
+    {{> afQuickField name='name' }}
+    {{> afQuickField name='description' rows=2 }}
+    {{> afQuickField name='location' }}
+
+    <div class="panel panel-default" data-hook="panels">
+      <div class="panel-heading">{{afFieldLabelText name='panels'}}</div>
+      {{#if afFieldIsInvalid name='panels'}}
+      <div class="panel-body has-error">
+        <span class="help-block">{{{afFieldMessage name='panels'}}}</span>
+      </div>
+      {{/if}}
+      <ul class="list-group">
+        {{#afEachArrayItem name='panels'}}
+        <li class="list-group-item autoform-array-item">
+          <div>
+            <div class="autoform-remove-item-wrap">
+              <button type="button" class="btn btn-primary autoform-remove-item"><span class="glyphicon glyphicon-minus"></span></button>
+            </div>
+            <div class="autoform-array-item-body">
+              <div class="panel panel-default" data-hook="panel">
+                <div class="panel-body">
+                  {{> afQuickField name='panels.$.type' type="select" options='allowed' data-hook='type-selector' }}
+                  {{> afQuickField name='panels.$.priority' type="select" options='allowed' }}
+                  {{> afQuickField name='panels.$.duration' }}
+                  {{> afQuickField name='panels.$.timeslots' type='select-checkbox-inline' options='allowed' noselect="true"}}
+
+                  <div data-hook="text-panel content-panel">
+                    {{> afQuickField name="panels.$.text" }}
+                  </div>
+                  <div data-hook="image-panel content-panel">
+                    {{> afQuickField name="panels.$.image" }}
+                  </div>
+                </div>
+              </div>
+
+              {{#if afFieldValueIs name=this.current.type value="text" }}
+
+              {{else}}
+              {{/if}}
+            </div>
+          </div>
+        </li>
+        {{/afEachArrayItem}}
+        <li class="list-group-item">
+          <button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="panels"><span class="glyphicon glyphicon-plus"></span></button>
+        </li>
+      </ul>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+  {{/autoForm}}
 </template>
+

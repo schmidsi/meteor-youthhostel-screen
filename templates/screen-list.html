@@ -1,11 +1,12 @@
 <template name='screenList'>
-  <table class='small-12'>
+  <table class='table'>
     <thead><tr>
-      <th class="small-5">Name</th>
-      <th class="small-6">Location</th>
-      <th class="small-1">
-        <a class="button tiny round icon success fi-plus"
-          href="{{path 'screenDetail' id='add'}}"></a>
+      <th>Name</th>
+      <th>Location</th>
+      <th>
+        <a class="btn btn-default" href="{{path 'screenDetail' id='add'}}">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
       </th>
     </tr></thead>
     <tbody>

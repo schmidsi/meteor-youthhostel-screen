@@ -3,6 +3,7 @@
 Schemas._TextPanel = new SimpleSchema({
   text: {
     type: String,
+    optional: true,
     autoform: {
       afFieldInput: {
         type: 'textarea',
@@ -12,6 +13,7 @@ Schemas._TextPanel = new SimpleSchema({
   },
   size: {
     type: String,
+    optional: true,
     allowedValues: ['l', 'm', 's'],
     defaultValue: 'm'
   }
@@ -20,10 +22,12 @@ Schemas._TextPanel = new SimpleSchema({
 
 Schemas._ImagePanel = new SimpleSchema({
   url: {
-    type: String
-  },
-  type: {
     type: String,
+    optional: true
+  },
+  display: {
+    type: String,
+    optional: true,
     allowedValues: ['contain', 'cover'],
     defaultValue: 'cover'
   }
@@ -33,8 +37,8 @@ Schemas._ImagePanel = new SimpleSchema({
 Schemas.Panel = new SimpleSchema([{
   type: {
     type: String,
-    allowedValues: ['Text', 'Image'],
-    defaultValue: 'Text'
+    allowedValues: ['text', 'image'],
+    defaultValue: 'text'
   },
   priority: {
     type: Number,
@@ -47,29 +51,14 @@ Schemas.Panel = new SimpleSchema([{
   },
   timeslots: {
     type: [String],
-    autoform: {
-      type: 'select-checkbox-inline',
-      afFieldInput: {
-        noselect: true,
-        options: {
-          'morning':   'morning',
-          'noon':      'noon',
-          'afternoon': 'afternoon',
-          'evening':   'evening',
-          'night':     'night'
-        }
-      }
-    }
+    allowedValues: ['morning', 'noon', 'afternoon', 'evening', 'night']
   },
   text: {
     type: Schemas._TextPanel,
-    autoform: {
-      data: {
-        'asdfasdf': 1234
-      }
-    }
+    optional: true
   },
   image: {
-    type: Schemas._ImagePanel
+    type: Schemas._ImagePanel,
+    optional: true
   }
 }, Schemas.Base])

@@ -12,12 +12,12 @@ Schemas.Screen = new SimpleSchema([{
       type: 'map',
       afFieldInput: {
         geolocation: true,
-        searchBox: true,
-        autolocate: true
+        searchBox: true
       }
     }
   },
   panels: {
-    type: [ Schemas.Panel ]
+    type: [ Schemas.Panel ],
+    optional: true
   }
 }, Schemas.Base])

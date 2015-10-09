@@ -1,33 +1,30 @@
 <template name='adminLayout'>
   <header>
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/"> Youthhostel Screen Control Room</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon">
-          <a href="#"><span>Menu</span></a>
-        </li>
-      </ul>
-      <section class="top-bar-section">
-        <ul class="right">
-          <li class="divider"></li>
-          <li><a href="/screens">Screens</a></li>
-          <li class="divider"></li>
-          <li><a href="/images">Images</a></li>
-          <li class="divider"></li>
-          <li><a href="/users">Users</a></li>
-          <li class="divider"></li>
-        </ul>
-      </section>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Youthhostel Screen Control Room</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Screens</a></li>
+            <li><a href="/">Images</a></li>
+            <li><a href="/">Users</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
   </header>
 
-  <main class="content">
-    <div class="row">
-      <div class="small-12 columns">
-        {{>Template.dynamic template=content}}
-      </div>
-    </div>
+  <main class="container">
+    {{>Template.dynamic template=content}}
   </main>
 </template>
